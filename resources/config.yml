@@ -1,8 +1,5 @@
 title: "&b&lFly UI"
 
-logout-disabled-message: "&cYour flight was disabled because you logged out."
-
-
 content: "&7Manage your flight settings!\n\n&fChoose an option below."
 
 open-message: "&aOpened Fly UI."
@@ -13,6 +10,8 @@ disabled-message: "&cFlight disabled."
 
 combat-message: "&cYou cannot fly while combat tagged."
 combat-disabled-message: "&cYour flight was disabled because you entered combat."
+
+logout-disabled-message: "&cYour flight was disabled because you logged out."
 
 no-permission: "&cYou do not have permission."
 
