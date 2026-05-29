@@ -1,0 +1,19 @@
+title: "&b&lFly UI"
+
+content: "&7Manage your flight settings!\n\n&fChoose an option below."
+
+open-message: "&aOpened Fly UI."
+close-message: "&cClosed Fly UI."
+
+enabled-message: "&aFlight enabled."
+disabled-message: "&cFlight disabled."
+
+combat-message: "&cYou cannot fly while combat tagged."
+combat-disabled-message: "&cYour flight was disabled because you entered combat."
+
+no-permission: "&cYou do not have permission."
+
+buttons:
+  enable: "&aEnable Fly"
+  disable: "&cDisable Fly"
+  close: "&7Close"
