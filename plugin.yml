@@ -6,10 +6,8 @@ author: ZyberPE
 
 commands:
   fly:
-    description: Open Fly UI
-    permission: flyui.use
-  flyui:
-    description: Open Fly UI
+    description: Fly UI
+    aliases: [flyui]
     permission: flyui.use
 
 permissions:
