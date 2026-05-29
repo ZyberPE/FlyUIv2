@@ -16,19 +16,25 @@ class FlyCommand extends Command{
     private Main $plugin;
 
     public function __construct(Main $plugin){
-        parent::__construct("fly");
+        parent::__construct(
+            "fly",
+            "Open Fly UI",
+            "/fly",
+            ["flyui"]
+        );
 
-        $this->setAliases(["flyui"]);
+        $this->setPermission("flyui.use");
 
         $this->plugin = $plugin;
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args) : void{
+
         if(!$sender instanceof Player){
             return;
         }
 
-        if(!$sender->hasPermission("flyui.use")){
+        if(!$this->testPermission($sender)){
             $sender->sendMessage(
                 $this->plugin->format(
                     $this->plugin->getConfig()->get("no-permission")
@@ -44,12 +50,15 @@ class FlyCommand extends Command{
         );
 
         $form = new SimpleForm(function(Player $player, ?int $data) : void{
+
             if($data === null){
+
                 $player->sendMessage(
                     $this->plugin->format(
                         $this->plugin->getConfig()->get("close-message")
                     )
                 );
+
                 return;
             }
 
@@ -70,6 +79,7 @@ class FlyCommand extends Command{
                                         $this->plugin->getConfig()->get("combat-message")
                                     )
                                 );
+
                                 return;
                             }
                         }
@@ -83,6 +93,7 @@ class FlyCommand extends Command{
                             $this->plugin->getConfig()->get("enabled-message")
                         )
                     );
+
                 break;
 
                 case 1:
@@ -95,6 +106,7 @@ class FlyCommand extends Command{
                             $this->plugin->getConfig()->get("disabled-message")
                         )
                     );
+
                 break;
 
                 case 2:
@@ -104,6 +116,7 @@ class FlyCommand extends Command{
                             $this->plugin->getConfig()->get("close-message")
                         )
                     );
+
                 break;
             }
         });
