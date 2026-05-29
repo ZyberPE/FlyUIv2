@@ -1,0 +1,20 @@
+name: FlyUI
+main: FlyUI\Main
+version: 1.0.0
+api: 5.0.0
+author: ZyberPE
+
+commands:
+  fly:
+    description: Open Fly UI
+    permission: flyui.use
+  flyui:
+    description: Open Fly UI
+    permission: flyui.use
+
+permissions:
+  flyui.use:
+    default: true
+
+  flyui.bypasscombat:
+    default: op
