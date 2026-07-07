@@ -15,10 +15,14 @@ use pocketmine\command\CommandSender;
 
 use pocketmine\event\Listener;
 
+use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\event\player\PlayerQuitEvent;
 
 class Main extends PluginBase implements Listener{
+
+    /** @var array<string, bool> */
+    private array $noFall = [];
 
     public function onEnable() : void{
 
@@ -115,6 +119,10 @@ class Main extends PluginBase implements Listener{
 
                         case 1:
 
+                            if(!$player->isOnGround()){
+                                $this->noFall[$player->getName()] = true;
+                            }
+
                             $player->setFlying(false);
                             $player->setAllowFlight(false);
 
@@ -176,6 +184,10 @@ class Main extends PluginBase implements Listener{
 
         if($player->isFlying() || $player->getAllowFlight()){
 
+            if(!$player->isOnGround()){
+                $this->noFall[$player->getName()] = true;
+            }
+
             $player->setFlying(false);
             $player->setAllowFlight(false);
 
@@ -199,6 +211,23 @@ class Main extends PluginBase implements Listener{
                     $this->getConfig()->get("combat-disabled-message")
                 );
             }
+        }
+    }
+
+    public function onFallDamage(EntityDamageEvent $event) : void{
+
+        $entity = $event->getEntity();
+
+        if(!$entity instanceof Player){
+            return;
+        }
+
+        if(
+            $event->getCause() === EntityDamageEvent::CAUSE_FALL &&
+            isset($this->noFall[$entity->getName()])
+        ){
+            $event->cancel();
+            unset($this->noFall[$entity->getName()]);
         }
     }
 
