@@ -16,6 +16,6 @@ logout-disabled-message: "&cYour flight was disabled because you logged out."
 no-permission: "&cYou do not have permission."
 
 buttons:
-  enable: "&aEnable Fly"
-  disable: "&cDisable Fly"
-  close: "&7Close"
+  enable: "&a&lEnable Fly"
+  disable: "&c&lDisable Fly"
+  close: "&6&lClose"
